@@ -444,6 +444,17 @@
   </div>
 </footer>
 
+<!-- Voice note -->
+<audio id="voice" src="assets/audio/nektovia-voice.mp3" preload="auto"></audio>
+<button type="button" class="voice" id="voiceBtn" aria-label="Main suara NEKTOVIA" aria-pressed="false">
+  <span class="voice-ring" aria-hidden="true"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="20"/><circle class="voice-prog" id="voiceProg" cx="22" cy="22" r="20"/></svg>
+    <svg class="voice-ic voice-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="voice-ic voice-pause" viewBox="0 0 24 24"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+  </span>
+  <span class="voice-txt"><b id="voiceLabel">Sentuh untuk dengar</b><small>Pesanan suara NEKTOVIA</small></span>
+  <span class="voice-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+</button>
+
 <!-- Mobile sticky buy bar -->
 <div class="sticky-buy" id="sticky">
   <div><strong>The Golden Trio</strong><span>RM49 sebotol</span></div>

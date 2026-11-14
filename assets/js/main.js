@@ -65,6 +65,53 @@
     reveals.forEach(function (el) { el.classList.add('in'); });
   }
 
+  // Voice note: auto-main selepas interaksi pertama (klik/sentuh/kekunci)
+  var voice = document.getElementById('voice');
+  var vBtn = document.getElementById('voiceBtn');
+  if (voice && vBtn) {
+    var vLabel = document.getElementById('voiceLabel');
+    var vProg = document.getElementById('voiceProg');
+    var C = 125.66, started = false;
+    var setLabel = function (t) { vLabel.textContent = t; };
+    var playVoice = function () {
+      var p = voice.play();
+      if (p && p.catch) p.catch(function () {});
+    };
+    var firstInteract = function (e) {
+      removeFirst();
+      if (started || (e && vBtn.contains(e.target))) return;
+      playVoice();
+    };
+    var evs = ['click', 'touchend', 'keydown'];
+    var removeFirst = function () { evs.forEach(function (ev) { document.removeEventListener(ev, firstInteract, true); }); };
+    evs.forEach(function (ev) { document.addEventListener(ev, firstInteract, true); });
+
+    vBtn.addEventListener('click', function () {
+      removeFirst();
+      if (voice.paused) playVoice(); else voice.pause();
+    });
+    voice.addEventListener('play', function () {
+      started = true;
+      vBtn.classList.add('playing', 'started');
+      vBtn.setAttribute('aria-pressed', 'true');
+      vBtn.setAttribute('aria-label', 'Jeda suara NEKTOVIA');
+      setLabel('Sedang dimainkan');
+    });
+    voice.addEventListener('pause', function () {
+      vBtn.classList.remove('playing');
+      vBtn.setAttribute('aria-pressed', 'false');
+      vBtn.setAttribute('aria-label', 'Main suara NEKTOVIA');
+      if (!voice.ended) setLabel('Dijeda — sentuh untuk sambung');
+    });
+    voice.addEventListener('ended', function () {
+      setLabel('Main semula');
+      vProg.style.strokeDashoffset = C;
+    });
+    voice.addEventListener('timeupdate', function () {
+      if (voice.duration) vProg.style.strokeDashoffset = C * (1 - voice.currentTime / voice.duration);
+    });
+  }
+
   // Order form
   var form = document.getElementById('order');
   if (!form) return;
