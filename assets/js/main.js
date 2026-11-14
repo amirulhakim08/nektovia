@@ -5,7 +5,7 @@
   // ===== TETAPAN =====
   // Masukkan nombor WhatsApp perniagaan (format antarabangsa, tanpa + atau sengkang), cth: '60123456789'.
   // Jika kosong, WhatsApp akan buka dan minta pengguna pilih kenalan.
-  var WHATSAPP_NUMBER = '60123456789';
+  var WHATSAPP_NUMBER = '601152804888';
   var PRICE = 49;
 
   document.documentElement.classList.remove('no-js');
