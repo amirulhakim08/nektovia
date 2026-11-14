@@ -1,0 +1,13 @@
+{
+  "name": "NEKTOVIA — The Golden Trio",
+  "short_name": "NEKTOVIA",
+  "start_url": "/",
+  "display": "browser",
+  "lang": "ms-MY",
+  "background_color": "#f7f2e8",
+  "theme_color": "#f7f2e8",
+  "icons": [
+    {"src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml"},
+    {"src": "assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png"}
+  ]
+}

@@ -1,2 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://nektovia.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url></urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://nektovia.com/</loc>
+    <lastmod>2026-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image><image:loc>https://nektovia.com/assets/img/golden-trio.webp</image:loc><image:title>NEKTOVIA The Golden Trio 80 g</image:title></image:image>
+    <image:image><image:loc>https://nektovia.com/assets/img/banner.webp</image:loc><image:title>NEKTOVIA — Cara baharu menikmati madu</image:title></image:image>
+    <image:image><image:loc>https://nektovia.com/assets/img/madu.webp</image:loc><image:title>Madu</image:title></image:image>
+    <image:image><image:loc>https://nektovia.com/assets/img/habbatus-sauda.webp</image:loc><image:title>Habbatus Sauda</image:title></image:image>
+    <image:image><image:loc>https://nektovia.com/assets/img/saffron.webp</image:loc><image:title>Saffron</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://nektovia.com/llms.txt</loc>
+    <lastmod>2026-11-14</lastmod>
+    <priority>0.3</priority>
+  </url>
+</urlset>
