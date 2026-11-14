@@ -274,3 +274,11 @@ p{margin:0 0 1em}
   .voice{bottom:84px;left:12px;padding-right:14px}
   .voice-txt small{display:none}
 }
+
+/* payment */
+.pay{display:grid;gap:10px}
+.pay-note{font-size:12.5px;color:var(--muted);text-align:center;margin:0}
+.or{display:flex;align-items:center;gap:12px;margin:24px 0 4px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+.btn-wa{background:#fff;color:#1d7a45;border-color:#bfe3cc}
+.btn-wa:hover{background:#f1faf4;border-color:#25a35a}
