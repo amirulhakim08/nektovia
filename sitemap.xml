@@ -2,18 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://nektovia.com/</loc>
-    <lastmod>2026-11-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-11-15</lastmod>
     <priority>1.0</priority>
-    <image:image><image:loc>https://nektovia.com/assets/img/golden-trio.webp</image:loc><image:title>NEKTOVIA The Golden Trio 80 g</image:title></image:image>
-    <image:image><image:loc>https://nektovia.com/assets/img/banner.webp</image:loc><image:title>NEKTOVIA — Cara baharu menikmati madu</image:title></image:image>
-    <image:image><image:loc>https://nektovia.com/assets/img/madu.webp</image:loc><image:title>Madu</image:title></image:image>
-    <image:image><image:loc>https://nektovia.com/assets/img/habbatus-sauda.webp</image:loc><image:title>Habbatus Sauda</image:title></image:image>
-    <image:image><image:loc>https://nektovia.com/assets/img/saffron.webp</image:loc><image:title>Saffron</image:title></image:image>
+    <image:image><image:loc>https://nektovia.com/assets/img/koleksi.webp</image:loc><image:title>Koleksi NEKTOVIA</image:title></image:image>
   </url>
   <url>
-    <loc>https://nektovia.com/llms.txt</loc>
-    <lastmod>2026-11-14</lastmod>
-    <priority>0.3</priority>
+    <loc>https://nektovia.com/goldentrio/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://nektovia.com/assets/img/golden-trio.webp</image:loc><image:title>NEKTOVIA The Golden Trio 80 g</image:title></image:image>
+    <image:image><image:loc>https://nektovia.com/assets/img/banner.webp</image:loc><image:title>NEKTOVIA — Cara baharu menikmati madu</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://nektovia.com/madulebahasli/</loc>
+    <lastmod>2026-11-15</lastmod>
+    <priority>0.6</priority>
+    <image:image><image:loc>https://nektovia.com/assets/img/madu.webp</image:loc><image:title>Madu Lebah Asli</image:title></image:image>
   </url>
 </urlset>

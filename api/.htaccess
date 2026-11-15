@@ -1,0 +1,5 @@
+# Lindungi fail dalaman
+<FilesMatch "^(config|config\.sample|lib|products)\.php$">
+  Require all denied
+</FilesMatch>
+Options -Indexes

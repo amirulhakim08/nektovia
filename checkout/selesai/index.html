@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Status pesanan — NEKTOVIA</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="page-checkout">
+<header class="nav scrolled">
+  <div class="wrap nav-in">
+    <a href="/" class="logo"><svg class="logo-leaf" viewBox="0 0 32 24" aria-hidden="true"><path d="M16 22C10 20 4 14 5 4c7 1 11 7 11 18Z"/><path d="M16 22c6-2 12-8 11-18-7 1-11 7-11 18Z"/></svg>NEKTOVIA</a>
+  </div>
+</header>
+<main class="wrap done" id="utama">
+  <div class="co-card done-card" id="box">
+    <div class="done-icon" id="icon">⏳</div>
+    <h1 id="title">Menyemak pembayaran…</h1>
+    <p id="msg" class="muted">Sila tunggu sebentar.</p>
+    <div id="detail"></div>
+    <div class="done-actions" id="actions"></div>
+  </div>
+</main>
+<script src="/assets/js/cart.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var ref = q.get('ref'), t = q.get('t'), tries = 0;
+  var $ = function (id) { return document.getElementById(id); };
+  var rm = window.NKTCart.rm;
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return '&#' + c.charCodeAt(0) + ';'; }); }
+  function show(icon, title, msg, actions) {
+    $('icon').textContent = icon; $('title').textContent = title; $('msg').innerHTML = msg; $('actions').innerHTML = actions || '';
+  }
+  function detail(o) {
+    var rows = o.items.map(function (i) { return '<tr><td>' + esc(i.name) + ' × ' + i.qty + '</td><td>' + rm(i.line) + '</td></tr>'; }).join('');
+    if (o.discount) rows += '<tr><td>Diskaun (' + esc(o.coupon) + ')</td><td>−' + rm(o.discount) + '</td></tr>';
+    rows += '<tr><td>Penghantaran</td><td>' + rm(o.shipping) + '</td></tr><tr class="grand"><td>Jumlah</td><td>' + rm(o.total) + '</td></tr>';
+    $('detail').innerHTML = '<p class="done-ref">No. pesanan: <b>' + esc(o.ref) + '</b></p><table class="done-tbl">' + rows + '</table>';
+  }
+  function check() {
+    if (!ref || !t) { show('⚠️', 'Pesanan tidak dijumpai', 'Pautan tidak lengkap.', '<a class="btn btn-gold" href="/">Ke laman utama</a>'); return; }
+    fetch('/api/status.php?ref=' + encodeURIComponent(ref) + '&t=' + encodeURIComponent(t))
+      .then(function (r) { return r.json(); })
+      .then(function (o) {
+        if (!o.ok) { show('⚠️', 'Pesanan tidak dijumpai', esc(o.error || ''), '<a class="btn btn-gold" href="/">Ke laman utama</a>'); return; }
+        detail(o);
+        var wa = 'https://wa.me/' + o.whatsapp + '?text=' + encodeURIComponent('Hai NEKTOVIA, saya ingin bertanya tentang pesanan ' + o.ref);
+        if (o.status === 'paid' || o.status === 'shipped') {
+          window.NKTCart.clear();
+          show('✅', 'Terima kasih, ' + o.name.split(' ')[0] + '!', 'Pembayaran anda berjaya. Resit telah dihantar ke emel anda dan pesanan akan diproses secepat mungkin.',
+            '<a class="btn btn-gold" href="/">Kembali ke laman utama</a><a class="btn btn-ghost" href="' + wa + '" target="_blank" rel="noopener">Hubungi kami</a>');
+        } else if (o.status === 'pending' && tries++ < 20) {
+          show('⏳', 'Menyemak pembayaran…', 'Kami sedang menunggu pengesahan daripada CHIP. Jangan tutup halaman ini.');
+          setTimeout(check, 3000);
+        } else if (o.status === 'pending') {
+          show('⏳', 'Pembayaran belum disahkan', 'Jika anda sudah membayar, pengesahan mungkin mengambil sedikit masa. Muat semula halaman ini sebentar lagi, atau hubungi kami.',
+            '<a class="btn btn-gold" href="">Semak semula</a><a class="btn btn-ghost" href="' + wa + '" target="_blank" rel="noopener">Hubungi kami</a>');
+        } else {
+          show('❌', 'Pembayaran tidak berjaya', 'Pembayaran dibatalkan atau gagal. Troli anda masih disimpan — anda boleh cuba lagi.',
+            '<a class="btn btn-gold" href="/checkout/">Cuba bayar semula</a><a class="btn btn-ghost" href="' + wa + '" target="_blank" rel="noopener">Hubungi kami</a>');
+        }
+      })
+      .catch(function () { show('⚠️', 'Tidak dapat menyemak status', 'Semak sambungan internet dan muat semula halaman.', '<a class="btn btn-gold" href="">Muat semula</a>'); });
+  }
+  check();
+})();
+</script>
+</body>
+</html>

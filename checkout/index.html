@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Checkout — NEKTOVIA</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f7f2e8">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="page-checkout">
+
+<header class="nav scrolled">
+  <div class="wrap nav-in">
+    <a href="/" class="logo" aria-label="NEKTOVIA laman utama">
+      <svg class="logo-leaf" viewBox="0 0 32 24" aria-hidden="true"><path d="M16 22C10 20 4 14 5 4c7 1 11 7 11 18Z"/><path d="M16 22c6-2 12-8 11-18-7 1-11 7-11 18Z"/></svg>
+      NEKTOVIA
+    </a>
+    <span class="secure">🔒 Checkout selamat</span>
+  </div>
+</header>
+
+<main class="wrap co" id="utama">
+  <h1 class="co-title">Checkout</h1>
+
+  <div class="co-empty" id="empty" hidden>
+    <p>Troli anda kosong.</p>
+    <a href="/goldentrio/" class="btn btn-gold">Lihat The Golden Trio</a>
+  </div>
+
+  <form class="co-grid" id="co" novalidate hidden>
+    <section class="co-card">
+      <h2>Maklumat penghantaran</h2>
+      <div class="f2">
+        <div class="field"><label for="name">Nama penuh</label><input id="name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="phone">No. telefon</label><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="012-345 6789" required></div>
+      </div>
+      <div class="field"><label for="email">Emel <small>(resit dihantar ke sini)</small></label><input id="email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="address">Alamat</label><textarea id="address" name="address" rows="2" autocomplete="street-address" placeholder="No. rumah, jalan, taman" required></textarea></div>
+      <div class="f3">
+        <div class="field"><label for="postcode">Poskod</label><input id="postcode" name="postcode" inputmode="numeric" maxlength="5" autocomplete="postal-code" required></div>
+        <div class="field"><label for="city">Bandar</label><input id="city" name="city" autocomplete="address-level2" required></div>
+        <div class="field"><label for="state">Negeri</label><select id="state" name="state" autocomplete="address-level1" required><option value="">Pilih…</option></select></div>
+      </div>
+      <div class="field"><label for="notes">Nota <small>(pilihan)</small></label><input id="notes" name="notes" maxlength="500"></div>
+    </section>
+
+    <aside class="co-card co-sum">
+      <h2>Ringkasan pesanan</h2>
+      <ul class="co-items" id="items"></ul>
+
+      <div class="coupon">
+        <label for="coupon">Kod kupon</label>
+        <div class="coupon-row">
+          <input id="coupon" name="coupon" autocomplete="off" placeholder="Masukkan kod">
+          <button type="button" class="btn btn-ghost btn-sm" id="applyCoupon">Guna</button>
+        </div>
+        <p class="coupon-msg" id="couponMsg" role="status"></p>
+      </div>
+
+      <dl class="co-totals">
+        <div><dt>Subjumlah</dt><dd id="subtotal">—</dd></div>
+        <div id="discRow" hidden><dt>Diskaun <span id="discCode"></span></dt><dd id="discount">—</dd></div>
+        <div><dt>Penghantaran <small id="region"></small></dt><dd id="shipping">—</dd></div>
+        <div class="grand"><dt>Jumlah</dt><dd id="total">—</dd></div>
+      </dl>
+
+      <button type="submit" class="btn btn-gold btn-block" id="pay">Bayar dengan CHIP</button>
+      <p class="err" id="err" role="alert"></p>
+      <p class="pay-note">Anda akan dibawa ke halaman pembayaran CHIP yang selamat (FPX, kad debit/kredit, e-dompet).</p>
+    </aside>
+  </form>
+</main>
+
+<script src="/assets/js/cart.js"></script>
+<script src="/assets/js/checkout.js"></script>
+</body>
+</html>
